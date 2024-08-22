@@ -1,5 +1,7 @@
 const {Employee} = require('./models');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
 
 module.exports.LoginEmployee = async (reqBody) => {
     try{
@@ -13,9 +15,12 @@ module.exports.LoginEmployee = async (reqBody) => {
         if(!matchPassword){
             throw new Error("Wrong Password");
         }
-
-        
-
+        const token = await jwt.sign(
+                    {id:employee._id},
+                    process.env.SECRET_KEY,
+                    {expiresIn:'30d'}
+        );
+        return token;
     }catch(err){
         console.log("error to login Employee! ",err.message);
         throw new Error("error to login Employee! ",err.message);

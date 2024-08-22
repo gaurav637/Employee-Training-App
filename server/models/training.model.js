@@ -54,3 +54,5 @@ const trainingSchema = new mongoose.Schema(
     //   ]
 }, {timestamps: true});
   
+const Training = mongoose.model('Training', trainingSchema);
+module.exports = Training;
