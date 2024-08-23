@@ -1,6 +1,7 @@
-const {Employee} = require('./models');
+const {Employee} = require('../models');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+
 
 
 module.exports.LoginEmployee = async (reqBody) => {
@@ -24,5 +25,29 @@ module.exports.LoginEmployee = async (reqBody) => {
     }catch(err){
         console.log("error to login Employee! ",err.message);
         throw new Error("error to login Employee! ",err.message);
+    }
+}
+
+module.exports.RegisterEmployee = async (reqBody) => {
+    try{
+        const {email,password,name} = reqBody;
+        const checkEmail = await Employee.findOne({ email: email }); // check email alreday used ?
+        if(checkEmail){
+            throw new Error("Already user exits");
+        }
+        const salt = await bcrypt.genSalt(10);
+        const hashpassword = await bcrypt.hash(password,salt);
+        const payload = {
+            name,
+            email,
+            password : hashpassword
+        }
+        const employee = new Employee(payload);
+        const employeeSave = await employee.save();
+        return employeeSave;
+        
+    }catch(err){
+        console.log("Failed to register Employee! ",err.message);
+        throw new Error("Failed to register Employee! ",err.message);
     }
 }
