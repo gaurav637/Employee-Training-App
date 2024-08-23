@@ -1,21 +1,38 @@
-import React, { useState } from "react";
+import React, { useState , useNavigate} from "react";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
-    confirmPassword: "",
   });
 
+  const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); //  refersh kerne per page ka data delete ho jata hai 
     // Handle form submission logic here (e.g., validation, API calls)
+
+    try{
+        const response = fetch(`${process.env.BACKEND_URL}employee/signup`,{
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+            body: JSON.stringify(formData),
+        });
+        if(response.CREATED){
+          navigate("/home");
+        }else{
+          console.log("Login failed.");
+        }
+    }catch(err){
+      console.error("Error logging in:", err);
+    }
     console.log("Form submitted:", formData);
   };
 
@@ -81,26 +98,6 @@ const SignUp = () => {
               value={formData.password}
               onChange={handleChange}
               placeholder="Enter your password"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              required
-            />
-          </div>
-
-          {/* Confirm Password */}
-          <div className="mb-4">
-            <label
-              htmlFor="confirmPassword"
-              className="block text-gray-700 font-semibold mb-2"
-            >
-              Confirm Password
-            </label>
-            <input
-              type="password"
-              id="confirmPassword"
-              name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              placeholder="Confirm your password"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />

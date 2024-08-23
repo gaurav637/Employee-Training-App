@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useNavigate } from "react";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -6,28 +6,42 @@ const Login = () => {
     password: "",
   });
 
-
+  const navigate = useNavigate(); // React Router's navigation hook
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit =async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here (e.g., validation, API calls)
-    console.log("Form submitted:", formData);
 
-    const res = await fetch(process.env.BACKEND_URL,formData)
+    try {
+      // Simulate API call with formData
+      const response = await fetch(`${process.env.BACKEND_URL}/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-
+      if (response.ok) {
+        // If login is successful, navigate to the home page
+        navigate("/home");
+      } else {
+        // Handle login failure (e.g., display an error message)
+        console.log("Login failed.");
+      }
+    } catch (error) {
+      console.error("Error logging in:", error);
+    }
   };
-
   return (
     <div className="bg-gray-100 flex justify-center items-center h-screen">
       <div className="bg-white shadow-md rounded-lg p-8 max-w-md w-full">
         <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">
-          Welcome Back
+          TrainingHub
         </h2>
         <form onSubmit={handleSubmit}>
           {/* Email */}
@@ -81,11 +95,6 @@ const Login = () => {
 
         {/* Forgot Password and Signup */}
         <div className="text-center text-gray-600 mt-4">
-          <p>
-            <a href="/forgot-password" className="text-blue-500 hover:underline">
-              Forgot Password?
-            </a>
-          </p>
           <p className="mt-2">
             Don't have an account?{" "}
             <a href="/signup" className="text-blue-500 hover:underline">
