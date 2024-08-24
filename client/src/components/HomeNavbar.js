@@ -18,7 +18,7 @@ const HomeNavbar = () => {
             {/* Right Section: Navigation Links */}
             <div className="hidden md:flex space-x-6 items-center">
               <a
-                href="/"
+                href="/home"
                 className="text-gray-600 hover:text-blue-500 font-medium transition duration-300"
               >
                 Home
@@ -30,22 +30,17 @@ const HomeNavbar = () => {
                 Profile
               </a>
               <a
-                href="/training-list"
+                href="/training"
                 className="text-gray-600 hover:text-blue-500 font-medium transition duration-300"
               >
                 Training List
               </a>
+          
               <a
-                href="/login"
-                className="text-gray-600 hover:text-blue-500 font-medium transition duration-300"
-              >
-                Login
-              </a>
-              <a
-                href="/signup"
+                href="/about"
                 className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300"
               >
-                Sign Up
+                About
               </a>
             </div>
   
@@ -74,5 +69,7 @@ const HomeNavbar = () => {
           </div>
         </div>
       </nav>
-    );
-  };
+  );
+};
+
+export default HomeNavbar;

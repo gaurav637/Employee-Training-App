@@ -1,10 +1,15 @@
-import React, { useState,useNavigate } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+
+  const [errorMessage, setErrorMessage] = useState(""); // State to store error messages
 
   const navigate = useNavigate(); // React Router's navigation hook
 
@@ -15,34 +20,38 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    const URL = `${process.env.REACT_APP_BACKEND_URL}/employee/login`;
     try {
-      // Simulate API call with formData
-      const response = await fetch(`${process.env.BACKEND_URL}/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await axios.post(URL, formData);
+      toast.success(response.data.message);
 
-      if (response.ok) {
-        // If login is successful, navigate to the home page
+      if (response.data.success) {
+        console.log("success 26");
+       //  console.log("token-> ",response?.data?.token);
+        localStorage.setItem('token', response?.data?.token);
         navigate("/home");
-      } else {
-        // Handle login failure (e.g., display an error message)
-        console.log("Login failed.");
       }
     } catch (error) {
-      console.error("Error logging in:", error);
+      const errorMsg = error?.response?.data?.message || "Something went wrong!";
+      toast.error(errorMsg); // Display error using toast
+      setErrorMessage(errorMsg); // Set error message in state to display on the screen
     }
   };
+
   return (
     <div className="bg-gray-100 flex justify-center items-center h-screen">
       <div className="bg-white shadow-md rounded-lg p-8 max-w-md w-full">
         <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">
           TrainingHub
         </h2>
+
+        {/* Display Error Message */}
+        {errorMessage && (
+          <div className="bg-red-100 text-red-700 p-2 mb-4 rounded text-center">
+            {errorMessage}
+          </div>
+        )}
+
         <form onSubmit={handleSubmit}>
           {/* Email */}
           <div className="mb-4">

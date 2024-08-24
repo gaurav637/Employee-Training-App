@@ -1,4 +1,7 @@
-import React, { useState , useNavigate} from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from 'axios';
+import toast from 'react-hot-toast';
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -6,34 +9,28 @@ const SignUp = () => {
     email: "",
     password: "",
   });
-
+  const [errorMessage, setErrorMessage] = useState(""); // State to store error messages
   const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async  (e) => {
     e.preventDefault(); //  refersh kerne per page ka data delete ho jata hai 
     // Handle form submission logic here (e.g., validation, API calls)
-
+    const URL = `${process.env.REACT_APP_BACKEND_URL}/employee/signup`;
     try{
-        const response = fetch(`${process.env.BACKEND_URL}employee/signup`,{
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-            body: JSON.stringify(formData),
-        });
-        if(response.CREATED){
-          navigate("/home");
-        }else{
-          console.log("Login failed.");
-        }
-    }catch(err){
-      console.error("Error logging in:", err);
+      const response = await axios.post(URL,formData);
+      toast.success(response.data.message)
+      if(response.data.success){
+        navigate('/home');
+      }
+    }catch(error){
+      const errorMsg = error?.response?.data?.message || "Something went wrong!";
+      toast.error(errorMsg); // Display error using toast
+      setErrorMessage(errorMsg); // Set error message in state to display on the screen
     }
-    console.log("Form submitted:", formData);
   };
 
   return (

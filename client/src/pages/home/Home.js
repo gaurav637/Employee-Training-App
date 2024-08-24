@@ -1,13 +1,14 @@
 import React from 'react'
+import HomeNavbar from '../../components/HomeNavbar';
 
 const Home = () => {
   return (
     <div>
-      <Navbar />
+      <HomeNavbar />
       <main className="flex justify-center items-center h-screen bg-gray-100">
         <div className="text-center">
           <h1 className="text-4xl font-bold text-gray-800 mb-6">
-            Welcome to MyApp!
+            Welcome to TrainingHub!
           </h1>
           <p className="text-lg text-gray-600 mb-4">
             Your one-stop platform for all your training needs.
