@@ -1,36 +1,42 @@
 const {EmployeeService} = require('../services');
+const {Employee} = require('../models');
 
-module.exports.loginEmployee = async (req,res) => {
-    try{
-        const result = await EmployeeService.LoginEmployee(req.body);
-        if(!result){
-            return res.status(401).json({
-                Message: "Unauthorized!",
-                Success: "False"
-            });
-        }
-        return res.status(200).json({
-            Message: "Login",
-            Success: true,
-            Data: result,
+
+module.exports.loginEmployee = async (req, res) => {
+    try {
+      const token = await EmployeeService.LoginEmployee(req.body,res);
+      if (!token) {
+        return res.status(401).json({
+          message: "Unauthorized! Invalid email or password.",
+          success: false,
         });
-
-
-    }catch(err){
-        return res.status(500).json({
-            Message: "Internal Server Error",
-            Success: "False",
-        });
+      }
+      return res.status(200).json({
+        message: "Login successful!",
+        token: token, // Use consistent key 'data' (not 'Data')
+        success: true,
+      });
+    } catch (error) {
+      // Log the error for better debugging
+      console.error("Error during login:", error.message);
+  
+      // Return 500 (Internal Server Error) for unexpected errors
+      return res.status(500).json({
+        message: error.message || error,
+        success: false,
+        error: true,
+      });
     }
-}
+  };
+  
 
 module.exports.registerEmployee = async (req,res) => {
     try{
         const employee = await EmployeeService.RegisterEmployee(req.body);
         if(!employee){
             return res.status(500).json({
-                Message: "Employee Not Created!",
-                Success: "false",
+                message: "Employee Not Created!",
+                error: true,
             });
         }
         return res.status(201).json({
@@ -41,8 +47,21 @@ module.exports.registerEmployee = async (req,res) => {
 
     }catch(err){
         return res.status(500).json({
-            Message: "Internal server Error!",
-            Success: "false",
+            message: "Internal server Error!",
+            error: true,
         });
     }
 }
+
+module.exports.getEmployeeProfile = async (req, res) => {
+    try {
+      const employee = await Employee.findById(req.user.id)
+        .populate('trainingsEnrolled progress.training'); // Populating related data
+      if (!employee) {
+        return res.status(404).json({ message: 'Employee not found', error: true });
+      }
+      res.status(200).json({ data: employee, success: true });
+    } catch (error) {
+      res.status(500).json({ message: error.message, error: true });
+    }
+};

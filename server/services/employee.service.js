@@ -4,27 +4,28 @@ const jwt = require('jsonwebtoken');
 
 
 
-module.exports.LoginEmployee = async (reqBody) => {
+module.exports.LoginEmployee = async (reqBody,res) => {
     try{
         const {email,password} = reqBody;
-        const employee = await Employee.find({email: email});
+        const employee = await Employee.findOne({email});
         if(!employee){
             throw new Error("Employee Not Exist");
         }
         const hashPassword = employee.password;
-        const matchPassword = await bcrypt.compare(hashPassword,password);
+        const matchPassword = await bcrypt.compare(password,hashPassword);
         if(!matchPassword){
-            throw new Error("Wrong Password");
+            throw new Error("Incorrect Password");
         }
         const token = await jwt.sign(
                     {id:employee._id},
                     process.env.SECRET_KEY,
                     {expiresIn:'30d'}
         );
+        res.cookie("token",token); 
         return token;
-    }catch(err){
-        console.log("error to login Employee! ",err.message);
-        throw new Error("error to login Employee! ",err.message);
+    }catch(error){
+        console.log("error to login Employee! ",error.message);
+        throw new Error(error.message);
     }
 }
 
@@ -48,6 +49,6 @@ module.exports.RegisterEmployee = async (reqBody) => {
         
     }catch(err){
         console.log("Failed to register Employee! ",err.message);
-        throw new Error("Failed to register Employee! ",err.message);
+        throw new Error(err.message);
     }
 }
