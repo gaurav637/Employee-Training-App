@@ -15,9 +15,9 @@
   Contributions are welcome! If you have suggestions or improvements, please follow these steps:
 
 - Fork the repository.
-- Create a new branch (```git checkout -b feature/YourFeature).```
-- Commit your changes (```git commit -am 'Add some feature').```
-- Push to the branch (```git push origin feature/YourFeature).```
+- Create a new branch ```git checkout -b feature```
+- Commit your changes ```git commit -m 'Add some feature```
+- Push to the branch ```git push origin feature```
 - Create a new Pull Request.
 
 ##Contact
@@ -25,7 +25,7 @@
 
 - Author: Your Name
 - Email: negigaurav637@gmail.com
-- GitHub: [https://github.com/gaurav637
+- GitHub: (https://github.com/gaurav637)
 - LinkedIn: 
 
   
