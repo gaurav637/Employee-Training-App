@@ -30,28 +30,27 @@ const trainingSchema = new mongoose.Schema(
         type: Number, 
         default: 20 
       },
-    //   attendees: [
-    //     { 
-    //       type: mongoose.Schema.Types.ObjectId, 
-    //       ref: 'Employee' 
-    //     }
-    //   ],
-    //   feedback: [
-    //     {
-    //       employee: { 
-    //         type: mongoose.Schema.Types.ObjectId, 
-    //         ref: 'Employee' 
-    //       },
-    //       rating: { 
-    //         type: Number, 
-    //         min: 1, 
-    //         max: 5 
-    //       },
-    //       comments: { 
-    //         type: String 
-    //       }
-    //     }
-    //   ]
+      moduleContent:[
+        {
+          moduleName:{
+            type: String,
+          },
+          summary:{
+            type: String,
+          },
+          video:{
+            type: String
+          },
+          isComplete:{
+            type: Boolean,
+            default: false,
+          },
+          complete:{
+            type: Number,
+            default: 0,
+          }
+        }
+      ]
 }, {timestamps: true});
   
 const Training = mongoose.model('Training', trainingSchema);

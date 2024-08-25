@@ -19,4 +19,9 @@ router.post(
     trainingController.searchTrainings,
 );
 
+router.get(
+    "/get-modules/:id",
+    trainingController.getTrainingModules,
+);
+
 module.exports = router;

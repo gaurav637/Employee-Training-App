@@ -43,3 +43,19 @@ module.exports.serachTraining = async (searchKey)=> {
         throw new Error(error.message);
     }
 }
+
+module.exports.getAllmodulesInTraining = async (id) => {
+    try{
+        const training = await Training.findById(id);
+        if(!training){
+            throw new Error("Training Not Found!");
+        }
+        const modules = training.moduleContent;
+        if(!modules){
+            throw new Error("there are not any Modules");
+        }
+        return modules;
+    }catch(error){
+        throw new Error(error.message);
+    }
+}
