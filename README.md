@@ -25,7 +25,7 @@
 
 - Author: Your Name
 - Email: negigaurav637@gmail.com
-- GitHub: (https://github.com/gaurav637)
+- GitHub: [Profile](https://github.com/gaurav637)
 - LinkedIn: 
 
   
