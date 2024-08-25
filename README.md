@@ -23,7 +23,7 @@
 ##Contact
   For any inquiries, please contact:
 
-- Author: Your Name
+- Author: Gaurav Negi
 - Email: negigaurav637@gmail.com
 - GitHub: [Profile](https://github.com/gaurav637)
 - LinkedIn: 
