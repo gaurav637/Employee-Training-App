@@ -10,6 +10,7 @@ import Home from './pages/home/Home';
 import Profile from './pages/profile/Profile'
 import About from './pages/about/About';
 import Training from './pages/training/Training';
+import TrainingModule from './pages/TrainingModules/TrainingContent';
 
 
 
@@ -25,7 +26,7 @@ const router = createBrowserRouter(
       <Route path='/profile'   element={<Profile/>} />
       <Route path='/about' element={<About/>} />
       <Route path='/training' element={<Training/>} />
-
+      <Route path='/module/:id' element={<TrainingModule/>} />
     </Route>
   )
 )
