@@ -12,7 +12,7 @@ import About from './pages/about/About';
 import Training from './pages/training/Training';
 import TrainingModule from './pages/TrainingModules/TrainingContent';
 
-
+// routes
 
 const router = createBrowserRouter(
   createRoutesFromElements(
