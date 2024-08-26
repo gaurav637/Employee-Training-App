@@ -24,7 +24,7 @@ Follow the steps below to set up and run the project locally:
    2. **Navigate to the Project Directory**:
       
       ```
-       cd TrainingHub
+       cd EmployeeTraining
       ```
       
    4. **Install Backend Dependencies**:
