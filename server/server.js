@@ -14,9 +14,6 @@ app.use(express.json());
 const router = require('./routes');
 app.use('/api' ,router);
 
-// app.use(cors({
-//     origin: 'http://localhost:5000', // Allow requests from this origin
-// }));
 const PORT = process.env.PORT||8080;
 app.listen(PORT , () => {
     console.log(`server running at port -> ${PORT}`);
