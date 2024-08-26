@@ -65,6 +65,38 @@ Follow the steps below to set up and run the project locally:
       npm start
      ```
 
+## TrainingHub Features
+
+1. **Video Library**: 
+   - A collection of video topics, each containing a unique video file.
+   
+2. **Sequential Video Playback**: 
+   - Employees must watch videos in the specified order without any option to fast forward or skip ahead.
+   - Ensures training is completed as intended by the organization(TrainingHub).
+
+3. **Resume from Last Stop**: 
+   - If a video stops playing at a particular timeline position, it will resume from that exact point on the next visit.
+   - Enhances user experience by saving the last playback position.
+
+4. **Back Navigation**: 
+   - Users can navigate back to previously watched videos but cannot fast-forward past the current video.
+   - Allows review of content without compromising the sequence enforcement.
+
+5. **Progress Tracking**: 
+   - Displays the employee's progress as a percentage completed on the dashboard.
+   - Provides a visual indicator to motivate employees and keep track of their training completion.
+
+6. **Authentication and Authorization (JWT)**: 
+   - Secure user login and access control using JSON Web Tokens (JWT).
+   - Ensures only authenticated users can access and interact with the platform.
+
+7. **Profile Page**: 
+   - Users can view and manage their personal details, update preferences, and see their training progress.
+
+8. **About Page**: 
+   - Provides details about the application, its purpose, and how it benefits employees and organizations.
+   - Gives an overview of the platform and key information about its development.
+
    
 ## Technical Stack and Framework Choices
 
