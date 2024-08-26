@@ -114,6 +114,236 @@ Follow the steps below to set up and run the project locally:
 - MongoDB: A NoSQL database used to store video metadata, user progress, and other relevant information.
 - Jwt: Authentication and Authorization
 
+## API Endpoints
+
+
+#### Employee Routes
+
+1. **Register a New Employee**
+   - **Endpoint:** `POST /signup`
+   - **Description:** Registers a new employee.
+   - **Request Body:**
+     ```json
+     {
+       "name": "Gaurav Negi",
+       "email": "gaurav@gmail.com",
+       "password": "gaurav8921",
+     }
+     ```
+   - **Response:**
+     - 201 Created
+       ```json
+       {
+         "id": "employeeId",
+         "name": "Employee Name",
+         "email": "employee@example.com",
+         "position": "Employee Position"
+       }
+       ```
+     - 500 Internal Server Error
+       ```json
+       {
+         "error": "Failed to register new employee: Error Message"
+       }
+       ```
+
+2. **Login Employee**
+   - **Endpoint:** `POST /login`
+   - **Description:** Logs in an employee and returns a JWT token.
+   - **Request Body:**
+     ```json
+     {
+       "email": "gaurav@gmail.com",
+       "password": "gaurav8921"
+     }
+     ```
+   - **Response:**
+     - 200 OK
+       ```json
+       {
+         "token": "jwtToken"
+       }
+       ```
+     - 401 Unauthorized
+       ```json
+       {
+         "error": "Invalid email or password"
+       }
+       ```
+
+3. **Get Employee Profile**
+   - **Endpoint:** `GET /profile`
+   - **Description:** Retrieves the profile of the logged-in employee.
+   - **Request Headers:**
+     - `Authorization: Bearer <token>`
+   - **Response:**
+     - 200 OK
+       ```json
+       {
+         "id": "employeeId",
+         "name": "Employee Name",
+         "email": "employee@example.com",
+       }
+       ```
+     - 401 Unauthorized
+       ```json
+       {
+         "error": "Unauthorized access"
+       }
+       ```
+
+#### Training Routes
+
+  1. **Create a New Training**
+   - **Endpoint:** `POST /create`
+   - **Description:** Creates a new training session.
+   - **Request Body:**
+     ```json
+     {
+       "title": "Mastering LinkedIn Profile Optimization for Professional Growth",
+       "description": "This comprehensive course provides strategies and best practices for optimizing your LinkedIn profile.",
+       "category": "Professional Development",
+       "startDate": "2024-11-01T00:00:00Z",
+       "endDate": "2024-11-30T23:59:59Z",
+       "instructor": "Sarah Thompson",
+       "maxParticipants": 100,
+       "moduleContent": [
+         {
+           "moduleName": "Building a Strong LinkedIn Profile",
+           "summary": "This module focuses on setting up a strong LinkedIn profile, covering:\n\n1. **Profile Picture**\n2. **Headline**\n3. **Summary**\n4. **Experience and Skills**",
+           "video": "http://localhost:433/dsdk",
+           "isComplete": false,
+           "complete": 0
+         }
+       ]
+     }
+     ```
+   
+   - **Response:**
+     - 201 Created
+       ```json
+       {
+         "id": "trainingId",
+         "title": "Mastering LinkedIn Profile Optimization for Professional Growth",
+         "description": "This comprehensive course provides strategies and best practices for optimizing your LinkedIn profile.",
+         "category": "Professional Development",
+         "startDate": "2024-11-01T00:00:00Z",
+         "endDate": "2024-11-30T23:59:59Z",
+         "instructor": "Sarah Thompson",
+         "maxParticipants": 100,
+         "moduleContent": [
+           {
+             "moduleName": "Building a Strong LinkedIn Profile",
+             "summary": "This module focuses on setting up a strong LinkedIn profile, covering:\n\n1. **Profile Picture**\n2. **Headline**\n3. **Summary**\n4. **Experience and Skills**",
+             "video": "http://localhost:433/dsdk",
+             "isComplete": false,
+             "complete": 0
+           }
+         ]
+       }
+       ```
+     - 500 Internal Server Error
+       ```json
+       {
+         "error": "Failed to create new training: Error Message"
+       }
+       ```
+
+
+2. **Get All Trainings**
+   - **Endpoint:** `GET /get-all`
+   - **Description:** Retrieves a list of all training sessions.
+   - **Response:**
+     - 200 OK
+       ```json
+       [
+         {
+           "id": "trainingId1",
+           "title": "Training Title 1",
+           "description": "Training Description 1",
+           "duration": 90,
+           "category": "Category 1"
+         },
+         {
+           "id": "trainingId2",
+           "title": "Training Title 2",
+           "description": "Training Description 2",
+           "duration": 60,
+           "category": "Category 2"
+         }
+       ]
+       ```
+     - 500 Internal Server Error
+       ```json
+       {
+         "error": "Failed to retrieve trainings: Error Message"
+       }
+       ```
+
+3. **Search Trainings**
+   - **Endpoint:** `POST /search`
+   - **Description:** Searches for training sessions based on the specified criteria.
+   - **Request Body:**
+     ```json
+     {
+       "query": "Search Term",
+       "filters": {
+         "category": "Category",
+         "duration": { "min": 30, "max": 120 }
+       }
+     }
+     ```
+   - **Response:**
+     - 200 OK
+       ```json
+       [
+         {
+           "id": "trainingId1",
+           "title": "Training Title 1",
+           "description": "Training Description 1",
+           "duration": 90,
+           "category": "Category 1"
+         }
+       ]
+       ```
+     - 400 Bad Request
+       ```json
+       {
+         "error": "Invalid search criteria"
+       }
+       ```
+
+4. **Get Training Modules**
+   - **Endpoint:** `GET /get-modules/:id`
+   - **Description:** Retrieves the modules for a specific training session.
+   - **Parameters:**
+     - `id`: The ID of the training session.
+   - **Response:**
+     - 200 OK
+       ```json
+       {
+         "id": "trainingId",
+         "title": "Training Title",
+         "modules": [
+           {
+             "moduleId": "moduleId1",
+             "moduleName": "Module 1",
+             "duration": 30
+           },
+           {
+             "moduleId": "moduleId2",
+             "moduleName": "Module 2",
+             "duration": 45
+           }
+         ]
+       }
+       ```
+     - 404 Not Found
+       ```json
+       {
+         "error": "Training not found"
+       }
+       ```
 
 
 
