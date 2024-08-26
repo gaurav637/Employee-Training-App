@@ -6,7 +6,7 @@ const connectBD = require('./config/connectDB');
 connectBD();
 app.options('*', cors()); // Allow preflight requests for all routes
 app.use(cors({
-    origin: '*', // aloow all url 
+    origin: '*',
     credentials : true,
 }));
 
