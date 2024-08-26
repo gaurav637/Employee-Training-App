@@ -66,9 +66,9 @@ Make sure you have the following installed:
      ```
 
    
-##Technical Stack and Framework Choices
+## Technical Stack and Framework Choices
 
-###Frontend:
+### Frontend:
 
 - HTML5 and JavaScript: Core structure and interactivity.
 - React.js: For building a dynamic and modular user interface.
@@ -76,7 +76,7 @@ Make sure you have the following installed:
 - Video.js: For seamless video playback with built-in controls and customization features.
 - Tailwind CSS: For efficient and responsive styling of the UI.
 - 
-###Backend:
+### Backend:
 
 - Node.js with Express.js: To handle API requests, routing, and business logic.
 - MongoDB: A NoSQL database used to store video metadata, user progress, and other relevant information.
@@ -94,7 +94,7 @@ Make sure you have the following installed:
 - Push to the branch ```git push origin feature```
 - Create a new Pull Request.
 
-##Contact
+## Contact
   For any inquiries, please contact:
 
 - Author: Gaurav Negi
