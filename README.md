@@ -256,22 +256,26 @@ Follow the steps below to set up and run the project locally:
    - **Response:**
      - 200 OK
        ```json
-       [
-         {
-           "id": "trainingId1",
-           "title": "Training Title 1",
-           "description": "Training Description 1",
-           "duration": 90,
-           "category": "Category 1"
-         },
-         {
-           "id": "trainingId2",
-           "title": "Training Title 2",
-           "description": "Training Description 2",
-           "duration": 60,
-           "category": "Category 2"
-         }
-       ]
+       {
+         "message": "Retrieved all trainings successfully",
+         "success": true,
+         "training": [
+           {
+             "_id": "66c9ae2b81ca247cfcb67eed",
+             "title": "Agile Project Management",
+             "description": "Learn the principles of Agile methodologies and how to effectively manage software projects.",
+             "category": "Project Management",
+             "startDate": "2024-09-10T08:00:00.000Z",
+             "endDate": "2024-11-30T16:00:00.000Z",
+             "instructor": "Michael Johnson",
+             "maxParticipants": 20,
+             "createdAt": "2024-08-24T09:55:55.884Z",
+             "updatedAt": "2024-08-24T09:55:55.884Z",
+             "__v": 0,
+             "moduleContent": []
+           }
+         ]
+       }
        ```
      - 500 Internal Server Error
        ```json
@@ -279,6 +283,7 @@ Follow the steps below to set up and run the project locally:
          "error": "Failed to retrieve trainings: Error Message"
        }
        ```
+
 
 3. **Search Trainings**
    - **Endpoint:** `POST /search`
@@ -362,7 +367,7 @@ Follow the steps below to set up and run the project locally:
 - Author: Gaurav Negi
 - Email: negigaurav637@gmail.com
 - GitHub: [Profile](https://github.com/gaurav637)
-- LinkedIn: 
+- LinkedIn: [Profile](https://www.linkedin.com/in/gauravnegi91/)
 
   
 Feel free to adjust the details to better match your project and personal information.
