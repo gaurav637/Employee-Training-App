@@ -18,7 +18,7 @@ Follow the steps below to set up and run the project locally:
    1. **Clone the Repository**:
 
       ```
-        git clone https://github.com/your-username/trainingpage.git
+        git clone https://github.com/gaurav637/Employee-TrainingHub
       ```
 
    2. **Navigate to the Project Directory**:
@@ -107,7 +107,7 @@ Follow the steps below to set up and run the project locally:
 - React Router: For handling navigation between video modules and ensuring a smooth user experience.
 - Video.js: For seamless video playback with built-in controls and customization features.
 - Tailwind CSS: For efficient and responsive styling of the UI.
-- 
+  
 ### Backend:
 
 - Node.js with Express.js: To handle API requests, routing, and business logic.
