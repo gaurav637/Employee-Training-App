@@ -8,7 +8,7 @@ Follow the steps below to set up and run the project locally:
 
 ### Prerequisites
 
-Make sure you have the following installed:
+  Make sure you have the following installed:
 
 - [Node.js](https://nodejs.org/)
 - [MongoDB](https://www.mongodb.com/)
@@ -43,7 +43,7 @@ Make sure you have the following installed:
 
   5. **Set Up Environment Variables**:
 
-    Create a .env file in the backend directory with the following content:
+      Create a .env file in the backend directory with the following content:
     
     ```
       PORT=4040
