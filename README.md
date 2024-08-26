@@ -29,41 +29,41 @@ Make sure you have the following installed:
       
    4. **Install Backend Dependencies**:
 
-    ```
-         cd server
-         npm install
-    ```
+      ```
+       cd server
+       npm install
+      ```
 
    4. **Install Frontend Dependencies**:
 
       ```
-         cd ../client
-         npm install
+       cd ../client
+       npm install
       ```   
 
   5. **Set Up Environment Variables**:
 
     Create a .env file in the backend directory with the following content:
     
-         ```
-            PORT=4040
-            MONGO_URI=mongodb://localhost:27017/DataBase_name
-            SECRET_KEY=your_jwt_secret
-            FRONTEND_URL=http://localhost:5000.
-          ```
+    ```
+      PORT=4040
+      MONGO_URI=mongodb://localhost:27017/DataBase_name
+      SECRET_KEY=your_jwt_secret
+      FRONTEND_URL=http://localhost:5000.
+    ```
   6. **Run the Backend**:
      
-         ```
-         cd backend
-         npm start
-         ```
+     ```
+      cd backend
+      npm start
+     ```
   8. **Run the Frontend**:
 
      Open a new terminal and run:
-        ```
-        cd frontend
-        npm start
-        ```
+     ```
+      cd frontend
+      npm start
+     ```
 
    
 ##Technical Stack and Framework Choices
