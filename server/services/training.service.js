@@ -2,7 +2,9 @@ const {Training} = require('../models');
 
 module.exports.createNewTraining = async (reqBody) => {
     try{
+        //console.log("video url -> ",reqBody.video);
         const newTraining = new Training(reqBody);
+        
         newTraining.save();
         return newTraining;
     }catch(error){
@@ -59,3 +61,33 @@ module.exports.getAllmodulesInTraining = async (id) => {
         throw new Error(error.message);
     }
 }
+
+module.exports.updateModule = async (id, reqBody) => {
+    try {
+        console.log("trainingId -> ", id);
+        const { moduleId, isComplete } = reqBody;
+
+        // Use `findById` correctly
+        const training = await Training.findById(id);
+        if (!training) {
+            throw new Error("Training not found");
+        }
+
+        // Find the specific module using its ID
+        const module = training.modules.id(moduleId);
+        if (!module) {
+            throw new Error("Module not found");
+        }
+
+        // Update the module's completion status
+        module.isComplete = isComplete;
+
+        // Save the updated training document
+        const updatedTraining = await training.save();
+        return updatedTraining;
+
+    } catch (error) {
+        console.error('Error updating module completion status:', error);
+        throw new Error(error.message);
+    }
+};

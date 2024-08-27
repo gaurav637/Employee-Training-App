@@ -26,7 +26,7 @@ const TrainingPage = () => {
   }, []);
 
   const handleEnroll = (trainingId) => {
-    navigate(`/module/${trainingId}`); // Redirect to the module page with the trainingId
+    navigate(`/module/${trainingId}`); 
   };
 
   if (loading) {

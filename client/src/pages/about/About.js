@@ -4,7 +4,6 @@ import HomeNavbar from '../../components/HomeNavbar';
 const About = () => {
   return (
     <div>
-      {/* Include HomeNavbar */}
       <HomeNavbar />
 
       <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center py-10 px-4">

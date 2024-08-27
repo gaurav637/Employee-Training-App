@@ -9,9 +9,9 @@ const Login = () => {
     password: "",
   });
 
-  const [errorMessage, setErrorMessage] = useState(""); // State to store error messages
+  const [errorMessage, setErrorMessage] = useState(""); 
 
-  const navigate = useNavigate(); // React Router's navigation hook
+  const navigate = useNavigate(); 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,14 +27,13 @@ const Login = () => {
 
       if (response.data.success) {
         console.log("success 26");
-       //  console.log("token-> ",response?.data?.token);
         localStorage.setItem('token', response?.data?.token);
         navigate("/home");
       }
     } catch (error) {
       const errorMsg = error?.response?.data?.message || "Something went wrong!";
-      toast.error(errorMsg); // Display error using toast
-      setErrorMessage(errorMsg); // Set error message in state to display on the screen
+      toast.error(errorMsg); 
+      setErrorMessage(errorMsg); 
     }
   };
 
@@ -45,7 +44,6 @@ const Login = () => {
           TrainingHub
         </h2>
 
-        {/* Display Error Message */}
         {errorMessage && (
           <div className="bg-red-100 text-red-700 p-2 mb-4 rounded text-center">
             {errorMessage}
@@ -53,7 +51,6 @@ const Login = () => {
         )}
 
         <form onSubmit={handleSubmit}>
-          {/* Email */}
           <div className="mb-4">
             <label
               htmlFor="email"
@@ -73,7 +70,6 @@ const Login = () => {
             />
           </div>
 
-          {/* Password */}
           <div className="mb-4">
             <label
               htmlFor="password"
@@ -93,7 +89,6 @@ const Login = () => {
             />
           </div>
 
-          {/* Submit Button */}
           <button
             type="submit"
             className="w-full bg-blue-500 text-white font-semibold py-2 rounded-lg hover:bg-blue-600 transition-colors"
@@ -101,8 +96,6 @@ const Login = () => {
             Log In
           </button>
         </form>
-
-        {/* Forgot Password and Signup */}
         <div className="text-center text-gray-600 mt-4">
           <p className="mt-2">
             Don't have an account?{" "}

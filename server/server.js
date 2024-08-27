@@ -4,7 +4,7 @@ const cors = require('cors');
 const app = express();
 const connectBD = require('./config/connectDB');
 connectBD();
-app.options('*', cors()); // Allow preflight requests for all routes
+app.options('*', cors()); // Allow all routes
 app.use(cors({
     origin: '*',
     credentials : true,
@@ -13,7 +13,6 @@ app.use(cors({
 app.use(express.json());
 const router = require('./routes');
 app.use('/api' ,router);
-
 const PORT = process.env.PORT||8080;
 app.listen(PORT , () => {
     console.log(`server running at port -> ${PORT}`);
