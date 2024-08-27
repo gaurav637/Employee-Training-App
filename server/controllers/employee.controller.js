@@ -13,21 +13,18 @@ module.exports.loginEmployee = async (req, res) => {
       }
       return res.status(200).json({
         message: "Login successful!",
-        token: token, // Use consistent key 'data' (not 'Data')
+        token: token,
         success: true,
       });
     } catch (error) {
-      // Log the error for better debugging
       console.error("Error during login:", error.message);
-  
-      // Return 500 (Internal Server Error) for unexpected errors
       return res.status(500).json({
         message: error.message || error,
         success: false,
         error: true,
       });
     }
-  };
+};
   
 
 module.exports.registerEmployee = async (req,res) => {
@@ -56,7 +53,7 @@ module.exports.registerEmployee = async (req,res) => {
 module.exports.getEmployeeProfile = async (req, res) => {
     try {
       const employee = await Employee.findById(req.user.id)
-        .populate('trainingsEnrolled progress.training'); // Populating related data
+        .populate('trainingsEnrolled progress.training'); 
       if (!employee) {
         return res.status(404).json({ message: 'Employee not found', error: true });
       }

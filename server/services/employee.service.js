@@ -32,7 +32,7 @@ module.exports.LoginEmployee = async (reqBody,res) => {
 module.exports.RegisterEmployee = async (reqBody) => {
     try{
         const {email,password,name} = reqBody;
-        const checkEmail = await Employee.findOne({ email: email }); // check email alreday used ?
+        const checkEmail = await Employee.findOne({ email: email }); 
         if(checkEmail){
             throw new Error("Already user exits");
         }

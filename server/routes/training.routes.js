@@ -24,4 +24,9 @@ router.get(
     trainingController.getTrainingModules,
 );
 
+router.post(
+    "/update-module/:id",
+    trainingController.updateTrainingModule,
+);
+
 module.exports = router;
