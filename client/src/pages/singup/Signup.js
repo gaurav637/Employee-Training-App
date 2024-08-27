@@ -9,7 +9,7 @@ const SignUp = () => {
     email: "",
     password: "",
   });
-  const [errorMessage, setErrorMessage] = useState(""); // State to store error messages
+  const [errorMessage, setErrorMessage] = useState(""); 
   const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,8 +17,7 @@ const SignUp = () => {
   };
 
   const handleSubmit = async  (e) => {
-    e.preventDefault(); //  refersh kerne per page ka data delete ho jata hai 
-    // Handle form submission logic here (e.g., validation, API calls)
+    e.preventDefault(); 
     const URL = `${process.env.REACT_APP_BACKEND_URL}/employee/signup`;
     try{
       const response = await axios.post(URL,formData);
@@ -28,8 +27,8 @@ const SignUp = () => {
       }
     }catch(error){
       const errorMsg = error?.response?.data?.message || "Something went wrong!";
-      toast.error(errorMsg); // Display error using toast
-      setErrorMessage(errorMsg); // Set error message in state to display on the screen
+      toast.error(errorMsg); 
+      setErrorMessage(errorMsg); 
     }
   };
 

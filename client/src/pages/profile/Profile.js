@@ -11,7 +11,7 @@ const Profile = () => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/employee/profile`, {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`, // Assuming you're storing the token in localStorage
+            Authorization: `Bearer ${localStorage.getItem('token')}`, 
           },
         });
         setEmployeeData(response.data.data);
@@ -39,7 +39,7 @@ const Profile = () => {
         <div className="flex justify-center items-center min-h-screen bg-gray-100">
        
        <div className="bg-white shadow-lg rounded-lg p-6 md:p-10 max-w-lg w-full">
-         {/* Profile Picture */}
+    
          <div className="flex justify-center mb-6">
            <img
              className="w-32 h-32 rounded-full border-4 border-blue-500"
@@ -48,7 +48,6 @@ const Profile = () => {
            />
          </div>
  
-         {/* Name and Info */}
          <div className="text-center mb-6">
            <h2 className="text-2xl font-semibold text-gray-800 mb-2">{employeeData.name}</h2>
            <p className="text-gray-600">{employeeData.email}</p>
